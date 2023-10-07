@@ -25,11 +25,15 @@ namespace ResumeAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Resume>>> GetResume()
         {
-          if (_context.Resume == null)
-          {
-              return NotFound();
-          }
-            return await _context.Resume.ToListAsync();
+            var resume = await _context.Resume!.Include(r => r.Project).FirstOrDefaultAsync();
+
+            if (resume == null)
+            {
+                return NotFound();
+            }
+
+            return await _context.Resume!.Include(r => r.Project).ToListAsync();
+
         }
 
         // GET: api/Resume/5

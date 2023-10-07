@@ -24,9 +24,10 @@ namespace ResumeAPI.Migrations
 
             modelBuilder.Entity("ResumeAPI.Models.Comments", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("CommentId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasDefaultValueSql("gen_random_uuid()");
 
                     b.Property<DateTime>("Created_at")
                         .ValueGeneratedOnAdd()
@@ -48,7 +49,7 @@ namespace ResumeAPI.Migrations
                     b.Property<Guid>("ResumeId")
                         .HasColumnType("uuid");
 
-                    b.HasKey("Id");
+                    b.HasKey("CommentId");
 
                     b.HasIndex("ResumeId");
 
@@ -59,7 +60,8 @@ namespace ResumeAPI.Migrations
                 {
                     b.Property<Guid>("ContactId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasDefaultValueSql("gen_random_uuid()");
 
                     b.Property<DateTime>("Created_at")
                         .ValueGeneratedOnAdd()
@@ -92,7 +94,8 @@ namespace ResumeAPI.Migrations
                 {
                     b.Property<Guid>("ExperienceId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasDefaultValueSql("gen_random_uuid()");
 
                     b.Property<string>("Company")
                         .IsRequired()
@@ -129,7 +132,8 @@ namespace ResumeAPI.Migrations
                 {
                     b.Property<Guid>("ProjectId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasDefaultValueSql("gen_random_uuid()");
 
                     b.Property<DateTime>("Created_at")
                         .ValueGeneratedOnAdd()
@@ -185,7 +189,7 @@ namespace ResumeAPI.Migrations
             modelBuilder.Entity("ResumeAPI.Models.Comments", b =>
                 {
                     b.HasOne("ResumeAPI.Models.Resume", "Resume")
-                        .WithMany("Comments")
+                        .WithMany("Comment")
                         .HasForeignKey("ResumeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -196,7 +200,7 @@ namespace ResumeAPI.Migrations
             modelBuilder.Entity("ResumeAPI.Models.Contacts", b =>
                 {
                     b.HasOne("ResumeAPI.Models.Resume", "Resume")
-                        .WithMany("Contacts")
+                        .WithMany("Contact")
                         .HasForeignKey("ResumeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -207,7 +211,7 @@ namespace ResumeAPI.Migrations
             modelBuilder.Entity("ResumeAPI.Models.Experiences", b =>
                 {
                     b.HasOne("ResumeAPI.Models.Resume", "Resume")
-                        .WithMany("Experiences")
+                        .WithMany("Experience")
                         .HasForeignKey("ResumeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -218,7 +222,7 @@ namespace ResumeAPI.Migrations
             modelBuilder.Entity("ResumeAPI.Models.Projects", b =>
                 {
                     b.HasOne("ResumeAPI.Models.Resume", "Resume")
-                        .WithMany("Projects")
+                        .WithMany("Project")
                         .HasForeignKey("ResumeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -228,13 +232,13 @@ namespace ResumeAPI.Migrations
 
             modelBuilder.Entity("ResumeAPI.Models.Resume", b =>
                 {
-                    b.Navigation("Comments");
+                    b.Navigation("Comment");
 
-                    b.Navigation("Contacts");
+                    b.Navigation("Contact");
 
-                    b.Navigation("Experiences");
+                    b.Navigation("Experience");
 
-                    b.Navigation("Projects");
+                    b.Navigation("Project");
                 });
 #pragma warning restore 612, 618
         }

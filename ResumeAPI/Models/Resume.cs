@@ -18,9 +18,9 @@ namespace ResumeAPI.Models
         [Column(TypeName = "int")]
         public int ProjectCount { get; set; }
 
-        public virtual ICollection<Projects> Projects { get; set; }
-        public virtual ICollection<Experiences> Experiences { get; set; }
-        public virtual ICollection<Contacts> Contacts { get; set; }
-        public virtual ICollection<Comments> Comments { get; set; }
+        public virtual ICollection<Projects> Project { get; set; }
+        public virtual ICollection<Experiences> Experience { get; set; }
+        public virtual ICollection<Contacts> Contact { get; set; }
+        public virtual ICollection<Comments> Comment { get; set; }
     }
 }

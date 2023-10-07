@@ -27,7 +27,7 @@ namespace ResumeAPI.Migrations
                 name: "Comments",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    CommentId = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
                     Name = table.Column<string>(type: "VARCHAR(50)", nullable: false),
                     Email = table.Column<string>(type: "VARCHAR(50)", nullable: false),
                     Massage = table.Column<string>(type: "TEXT", nullable: false),
@@ -36,7 +36,7 @@ namespace ResumeAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Comments", x => x.Id);
+                    table.PrimaryKey("PK_Comments", x => x.CommentId);
                     table.ForeignKey(
                         name: "FK_Comments_Resume_ResumeId",
                         column: x => x.ResumeId,
@@ -49,7 +49,7 @@ namespace ResumeAPI.Migrations
                 name: "Contacts",
                 columns: table => new
                 {
-                    ContactId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ContactId = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
                     Email = table.Column<string>(type: "VARCHAR(50)", nullable: true),
                     Phone = table.Column<string>(type: "VARCHAR(50)", nullable: true),
                     GitHub = table.Column<string>(type: "VARCHAR(50)", nullable: true),
@@ -72,7 +72,7 @@ namespace ResumeAPI.Migrations
                 name: "Experiences",
                 columns: table => new
                 {
-                    ExperienceId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ExperienceId = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
                     Title = table.Column<string>(type: "VARCHAR(50)", nullable: false),
                     Company = table.Column<string>(type: "VARCHAR(100)", nullable: false),
                     Range = table.Column<string>(type: "VARCHAR(100)", nullable: false),
@@ -95,7 +95,7 @@ namespace ResumeAPI.Migrations
                 name: "Projects",
                 columns: table => new
                 {
-                    ProjectId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ProjectId = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
                     ProjectName = table.Column<string>(type: "VARCHAR(100)", nullable: false),
                     Repo = table.Column<string>(type: "VARCHAR(100)", nullable: true),
                     Live = table.Column<string>(type: "VARCHAR(100)", nullable: true),
