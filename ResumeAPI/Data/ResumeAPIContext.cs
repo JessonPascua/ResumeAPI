@@ -38,11 +38,9 @@ namespace ResumeAPI.Data
             modelBuilder.Entity<Projects>()
                         .Property(r => r.Created_at)
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
-
             modelBuilder.Entity<Experiences>()
                         .Property(r => r.Created_at)
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
-
             modelBuilder.Entity<Contacts>()
                         .Property(r => r.Created_at)
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
