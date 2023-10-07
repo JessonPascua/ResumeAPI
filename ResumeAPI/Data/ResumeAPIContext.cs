@@ -22,6 +22,18 @@ namespace ResumeAPI.Data
             modelBuilder.Entity<Resume>()
                         .Property(r => r.Id)
                         .HasDefaultValueSql("gen_random_uuid()");
+            modelBuilder.Entity<Projects>()
+                        .Property(r => r.ProjectId)
+                        .HasDefaultValueSql("gen_random_uuid()");
+            modelBuilder.Entity<Experiences>()
+                        .Property(r => r.ExperienceId)
+                        .HasDefaultValueSql("gen_random_uuid()");
+            modelBuilder.Entity<Contacts>()
+                        .Property(r => r.ContactId)
+                        .HasDefaultValueSql("gen_random_uuid()");
+            modelBuilder.Entity<Comments>()
+                        .Property(r => r.CommentId)
+                        .HasDefaultValueSql("gen_random_uuid()");
 
             modelBuilder.Entity<Projects>()
                         .Property(r => r.Created_at)
