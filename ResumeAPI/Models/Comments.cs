@@ -7,7 +7,7 @@ namespace ResumeAPI.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+        public Guid CommentId { get; set; }
 
         [Column(TypeName = "VARCHAR(50)")]
         public string Name { get; set; }
