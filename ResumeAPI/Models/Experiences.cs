@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace ResumeAPI.Models
 {
     public class Experiences
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid ExperienceId { get; set; }
 
         [Column(TypeName = "VARCHAR(50)")]
@@ -17,11 +17,9 @@ namespace ResumeAPI.Models
         
         [Column(TypeName = "VARCHAR(100)")]
         public string Range { get; set; }
-       
-        [Column(TypeName = "TEXT")]
-        public string Responsibilities { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column(TypeName = "TEXT[]")]
+        public string[]? Responsibilities { get; set; }
         public DateTime Created_at { get; set; }
 
         // Foreign key for Resume
@@ -29,6 +27,7 @@ namespace ResumeAPI.Models
 
         // Navigation property
         [ForeignKey("ResumeId")]
+        [JsonIgnore]
         public virtual Resume Resume { get; set; }
     }
 }
