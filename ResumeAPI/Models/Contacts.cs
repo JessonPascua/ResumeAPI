@@ -9,16 +9,16 @@ namespace ResumeAPI.Models
         [Key]
         public Guid ContactId { get; set; }
 
-        [Column(TypeName = "VARCHAR(50)")]
+        [Column(TypeName = "VARCHAR(100)")]
         public string? Email { get; set; }
         
         [Column(TypeName = "VARCHAR(50)")]
         public string? Phone { get; set; }
         
-        [Column(TypeName = "VARCHAR(50)")]
+        [Column(TypeName = "VARCHAR(100)")]
         public string? GitHub { get; set; }
         
-        [Column(TypeName = "VARCHAR(50)")]
+        [Column(TypeName = "VARCHAR(100)")]
         public string? LinkedIn { get; set; }
 
         public DateTime Created_at { get; set; }
