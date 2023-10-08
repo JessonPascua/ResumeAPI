@@ -6,7 +6,7 @@ namespace ResumeAPI
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public async static Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
             var connectionString = builder.Configuration.GetConnectionString("ResumeAPIContext") ?? throw new InvalidOperationException("Connection string 'ResumeAPIContext' not found.");
@@ -30,6 +30,7 @@ namespace ResumeAPI
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            await SeedData.MySeedData(app);
 
             app.UseHttpsRedirection();
 
