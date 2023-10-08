@@ -34,18 +34,18 @@ namespace ResumeAPI.Migrations
 
                     b.Property<string>("CredentialURL")
                         .IsRequired()
-                        .HasColumnType("VARCHAR(100)");
+                        .HasColumnType("VARCHAR(225)");
 
                     b.Property<DateTime>("IssueDate")
                         .HasColumnType("Date");
 
                     b.Property<string>("Issuer")
                         .IsRequired()
-                        .HasColumnType("VARCHAR(50)");
+                        .HasColumnType("VARCHAR(100)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("VARCHAR(225)");
+                        .HasColumnType("VARCHAR(525)");
 
                     b.Property<Guid>("ResumeId")
                         .HasColumnType("uuid");
@@ -104,13 +104,13 @@ namespace ResumeAPI.Migrations
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<string>("Email")
-                        .HasColumnType("VARCHAR(50)");
+                        .HasColumnType("VARCHAR(100)");
 
                     b.Property<string>("GitHub")
-                        .HasColumnType("VARCHAR(50)");
+                        .HasColumnType("VARCHAR(100)");
 
                     b.Property<string>("LinkedIn")
-                        .HasColumnType("VARCHAR(50)");
+                        .HasColumnType("VARCHAR(100)");
 
                     b.Property<string>("Phone")
                         .HasColumnType("VARCHAR(50)");
@@ -150,7 +150,7 @@ namespace ResumeAPI.Migrations
 
                     b.Property<string>("School")
                         .IsRequired()
-                        .HasColumnType("VARCHAR(50)");
+                        .HasColumnType("VARCHAR(100)");
 
                     b.HasKey("EducationId");
 
@@ -187,7 +187,7 @@ namespace ResumeAPI.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("VARCHAR(50)");
+                        .HasColumnType("VARCHAR(100)");
 
                     b.HasKey("ExperienceId");
 
