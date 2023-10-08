@@ -9,7 +9,7 @@ namespace ResumeAPI.Models
         [Key]
         public Guid ExperienceId { get; set; }
 
-        [Column(TypeName = "VARCHAR(50)")]
+        [Column(TypeName = "VARCHAR(100)")]
         public string Title { get; set; }
         
         [Column(TypeName = "VARCHAR(100)")]
