@@ -9,7 +9,7 @@ namespace ResumeAPI.Models
         [Key]
         public Guid EducationId { get; set; }
 
-        [Column(TypeName = "VARCHAR(50)")]
+        [Column(TypeName = "VARCHAR(100)")]
         public string School { get; set; }
         
         [Column(TypeName = "VARCHAR(100)")]
