@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace ResumeAPI.Models
 {
     public class Comments
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid CommentId { get; set; }
 
         [Column(TypeName = "VARCHAR(50)")]
@@ -17,8 +17,6 @@ namespace ResumeAPI.Models
 
         [Column(TypeName = "TEXT")]
         public string Massage { get; set; }
-
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime Created_at { get; set; }
 
         // Foreign key for Resume
@@ -26,6 +24,7 @@ namespace ResumeAPI.Models
 
         // Navigation property
         [ForeignKey("ResumeId")]
+        [JsonIgnore]
         public virtual Resume Resume { get; set; }
     }
 }
