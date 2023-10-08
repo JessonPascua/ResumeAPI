@@ -7,11 +7,10 @@ namespace ResumeAPI.Models
     public class Projects
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid ProjectId { get; set; }
         
         [Column(TypeName = "VARCHAR(100)")]
-        public string ProjectName { get; set; }
+        public string Name { get; set; }
         
         [Column(TypeName = "VARCHAR(100)")]
         public string? Repo { get; set; }
@@ -22,7 +21,9 @@ namespace ResumeAPI.Models
         [Column(TypeName = "TEXT")]
         public string? Description { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column(TypeName = "TEXT[]")]
+        public string[]? Stacks { get; set; }
+
         public DateTime Created_at { get; set; }
 
         // Foreign key for Resume
