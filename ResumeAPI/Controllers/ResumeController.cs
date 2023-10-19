@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using ResumeAPI.Data;
-using ResumeAPI.Models;
+
 
 namespace ResumeAPI.Controllers
 {
@@ -20,6 +17,17 @@ namespace ResumeAPI.Controllers
         {
             _context = context;
         }
+
+        //[HttpGet]
+        //public async Task<ActionResult<IEnumerable<Api>>> GetAllRoutes()
+        //{
+        //    if (_context.Api == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(await _context.Api.Include(x => x.routes)
+        //                                   .ToListAsync());
+        //}
 
         // GET: api/Resume
         [HttpGet]
@@ -39,84 +47,72 @@ namespace ResumeAPI.Controllers
                                            .ToListAsync());
         }
 
-        [HttpGet]
-        [Route("Experiences")]
-        public async Task<ActionResult<IEnumerable<Resume>>> GetExperiences()
-        {
-            var experienceList = await _context.Experiences.ToListAsync();
 
-            if (experienceList == null || experienceList.Count == 0)
-            {
-                return NotFound();
-            }
-            return Ok(experienceList);
-        }
+        //[HttpGet]
+        //[Route("Certifications")]
+        //public async Task<ActionResult<IEnumerable<Resume>>> GetCertifications()
+        //{
+        //    var certificationList = await _context.Certifications.ToListAsync();
 
-        [HttpGet]
-        [Route("Educations")]
-        public async Task<ActionResult<IEnumerable<Resume>>> GetEducations()
-        {
-            var educationList = await _context.Educations.ToListAsync();
+        //    if (certificationList == null || certificationList.Count == 0)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(certificationList);
+        //}
 
-            if (educationList == null || educationList.Count == 0)
-            {
-                return NotFound();
-            }
-            return Ok(educationList);
-        }
+        //[HttpGet]
+        //[Route("Projects")]
+        //public async Task<ActionResult<IEnumerable<Resume>>> GetProjects()
+        //{
+        //    var projectList = await _context.Projects.ToListAsync();
 
-        [HttpGet]
-        [Route("Certifications")]
-        public async Task<ActionResult<IEnumerable<Resume>>> GetCertifications()
-        {
-            var certificationList = await _context.Certifications.ToListAsync();
+        //    if (projectList == null || projectList.Count == 0)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(projectList);
+        //}
 
-            if (certificationList == null || certificationList.Count == 0)
-            {
-                return NotFound();
-            }
-            return Ok(certificationList);
-        }
+        //[HttpGet]
+        //[Route("Contacts")]
+        //public async Task<ActionResult<IEnumerable<Resume>>> GetContacts()
+        //{
+        //    var contactList = await _context.Contacts.ToListAsync();
 
-        [HttpGet]
-        [Route("Projects")]
-        public async Task<ActionResult<IEnumerable<Resume>>> GetProjects()
-        {
-            var projectList = await _context.Projects.ToListAsync();
+        //    if (contactList == null || contactList.Count == 0)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(contactList);
+        //}
 
-            if (projectList == null || projectList.Count == 0)
-            {
-                return NotFound();
-            }
-            return Ok(projectList);
-        }
+        //[HttpGet]
+        //[Route("Comments")]
+        //public async Task<ActionResult<IEnumerable<Resume>>> GetComments()
+        //{
+        //    var commentList = await _context.Comments.ToListAsync();
 
-        [HttpGet]
-        [Route("Contacts")]
-        public async Task<ActionResult<IEnumerable<Resume>>> GetContacts()
-        {
-            var contactList = await _context.Contacts.ToListAsync();
+        //    if (commentList == null || commentList.Count == 0)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(commentList);
+        //}
 
-            if (contactList == null || contactList.Count == 0)
-            {
-                return NotFound();
-            }
-            return Ok(contactList);
-        }
+        //[HttpPost]
+        //[Route("comments")]
+        //public async Task<ActionResult<Resume>> PostComment([Bind("name")] Comments comment)
+        //{
+        //    if (_context.Comments == null)
+        //    {
+        //        return Problem("Entity set 'ResumeAPIContext.Comments'  is null.");
+        //    }
+        //    _context.Comments.Add(comment);
+        //    await _context.SaveChangesAsync();
 
-        [HttpGet]
-        [Route("Comments")]
-        public async Task<ActionResult<IEnumerable<Resume>>> GetComments()
-        {
-            var commentList = await _context.Comments.ToListAsync();
-
-            if (commentList == null || commentList.Count == 0)
-            {
-                return NotFound();
-            }
-            return Ok(commentList);
-        }
-
+        //    return CreatedAtAction("GetComments", new { id = comment.CommentId }, comment);
+        //}
 
         //[HttpGet]
         //public async Task<ActionResult<IEnumerable<Resume>>> GetExperiences()
