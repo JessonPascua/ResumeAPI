@@ -17,7 +17,7 @@ namespace ResumeAPI.Data
         public DbSet<ResumeAPI.Models.Contacts> Contacts { get; set; }
         public DbSet<ResumeAPI.Models.Comments> Comments { get; set; }
         public DbSet<ResumeAPI.Models.Resume> Resume { get; set; }
-
+        public DbSet<ResumeAPI.Models.Api> Api { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //base.OnModelCreating(modelBuilder);
