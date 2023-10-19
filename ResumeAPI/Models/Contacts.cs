@@ -24,11 +24,11 @@ namespace ResumeAPI.Models
         public DateTime Created_at { get; set; }
 
         // Foreign key for Resume
-        public Guid ResumeId { get; set; }
+        //public Guid ResumeId { get; set; }
 
-        // Navigation property
-        [ForeignKey("ResumeId")]
-        [JsonIgnore]
-        public virtual Resume Resume { get; set; }
+        //// Navigation property
+        //[ForeignKey("ResumeId")]
+        //[JsonIgnore]
+        //public virtual Resume Resume { get; set; }
     }
 }
