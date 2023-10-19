@@ -1,8 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
-
-namespace ResumeAPI.Models
+﻿namespace ResumeAPI.Models
 {
     public class Certifications
     {
@@ -21,14 +17,14 @@ namespace ResumeAPI.Models
         [Column(TypeName = "VARCHAR(225)")]
         public string CredentialURL { get; set; }
 
-        public DateTime Created_at { get; set; }
+        //public DateTime Created_at { get; set; }
 
-        // Foreign key for Resume
-        public Guid ResumeId { get; set; }
+        //// Foreign key for Resume
+        //public Guid ResumeId { get; set; }
 
-        // Navigation property
-        [ForeignKey("ResumeId")]
-        [JsonIgnore]
-        public virtual Resume Resume { get; set; }
+        //// Navigation property
+        //[ForeignKey("ResumeId")]
+        //[JsonIgnore]
+        //public virtual Resume Resume { get; set; }
     }
 }
