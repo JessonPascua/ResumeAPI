@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using ResumeAPI.Data;
 using System.Text.Json.Serialization;
@@ -31,11 +32,16 @@ namespace ResumeAPI
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
+            app.UseSwagger();
+            app.UseSwaggerUI(options =>
             {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "ResumeAPI v1");
+                if (app.Environment.IsProduction())
+                {
+                    options.RoutePrefix = string.Empty;
+                }
+            });
+
             await SeedData.MySeedData(app);
 
             app.UseHttpsRedirection();
