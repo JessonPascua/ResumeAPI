@@ -22,15 +22,27 @@ namespace ResumeAPI.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("ResumeAPI.Models.Api", b =>
+                {
+                    b.Property<Guid>("RouteId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string[]>("routes")
+                        .IsRequired()
+                        .HasColumnType("text[]");
+
+                    b.HasKey("RouteId");
+
+                    b.ToTable("Api");
+                });
+
             modelBuilder.Entity("ResumeAPI.Models.Certifications", b =>
                 {
                     b.Property<Guid>("CertificationId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
-
-                    b.Property<DateTime>("Created_at")
-                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("CredentialURL")
                         .IsRequired()
@@ -47,7 +59,7 @@ namespace ResumeAPI.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR(525)");
 
-                    b.Property<Guid>("ResumeId")
+                    b.Property<Guid?>("ResumeId")
                         .HasColumnType("uuid");
 
                     b.HasKey("CertificationId");
@@ -81,7 +93,7 @@ namespace ResumeAPI.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR(50)");
 
-                    b.Property<Guid>("ResumeId")
+                    b.Property<Guid?>("ResumeId")
                         .HasColumnType("uuid");
 
                     b.HasKey("CommentId");
@@ -115,7 +127,7 @@ namespace ResumeAPI.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("VARCHAR(50)");
 
-                    b.Property<Guid>("ResumeId")
+                    b.Property<Guid?>("ResumeId")
                         .HasColumnType("uuid");
 
                     b.HasKey("ContactId");
@@ -145,7 +157,7 @@ namespace ResumeAPI.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("ResumeId")
+                    b.Property<Guid?>("ResumeId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("School")
@@ -182,7 +194,7 @@ namespace ResumeAPI.Migrations
                     b.Property<string[]>("Responsibilities")
                         .HasColumnType("TEXT[]");
 
-                    b.Property<Guid>("ResumeId")
+                    b.Property<Guid?>("ResumeId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Title")
@@ -221,7 +233,7 @@ namespace ResumeAPI.Migrations
                     b.Property<string>("Repo")
                         .HasColumnType("VARCHAR(100)");
 
-                    b.Property<Guid>("ResumeId")
+                    b.Property<Guid?>("ResumeId")
                         .HasColumnType("uuid");
 
                     b.Property<string[]>("Stacks")
@@ -254,70 +266,81 @@ namespace ResumeAPI.Migrations
                     b.ToTable("Resume");
                 });
 
+            modelBuilder.Entity("ResumeAPI.Routes", b =>
+                {
+                    b.Property<string>("RoutesId")
+                        .HasColumnType("text");
+
+                    b.Property<Guid?>("ApiRouteId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("RoutesId");
+
+                    b.HasIndex("ApiRouteId");
+
+                    b.ToTable("Routes");
+                });
+
             modelBuilder.Entity("ResumeAPI.Models.Certifications", b =>
                 {
-                    b.HasOne("ResumeAPI.Models.Resume", "Resume")
+                    b.HasOne("ResumeAPI.Models.Resume", null)
                         .WithMany("Certifications")
-                        .HasForeignKey("ResumeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Resume");
+                        .HasForeignKey("ResumeId");
                 });
 
             modelBuilder.Entity("ResumeAPI.Models.Comments", b =>
                 {
-                    b.HasOne("ResumeAPI.Models.Resume", "Resume")
+                    b.HasOne("ResumeAPI.Models.Resume", null)
                         .WithMany("Comments")
-                        .HasForeignKey("ResumeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Resume");
+                        .HasForeignKey("ResumeId");
                 });
 
             modelBuilder.Entity("ResumeAPI.Models.Contacts", b =>
                 {
-                    b.HasOne("ResumeAPI.Models.Resume", "Resume")
+                    b.HasOne("ResumeAPI.Models.Resume", null)
                         .WithMany("Contacts")
-                        .HasForeignKey("ResumeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Resume");
+                        .HasForeignKey("ResumeId");
                 });
 
             modelBuilder.Entity("ResumeAPI.Models.Educations", b =>
                 {
-                    b.HasOne("ResumeAPI.Models.Resume", "Resume")
+                    b.HasOne("ResumeAPI.Models.Resume", null)
                         .WithMany("Educations")
-                        .HasForeignKey("ResumeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Resume");
+                        .HasForeignKey("ResumeId");
                 });
 
             modelBuilder.Entity("ResumeAPI.Models.Experiences", b =>
                 {
-                    b.HasOne("ResumeAPI.Models.Resume", "Resume")
+                    b.HasOne("ResumeAPI.Models.Resume", null)
                         .WithMany("Experiences")
-                        .HasForeignKey("ResumeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Resume");
+                        .HasForeignKey("ResumeId");
                 });
 
             modelBuilder.Entity("ResumeAPI.Models.Projects", b =>
                 {
-                    b.HasOne("ResumeAPI.Models.Resume", "Resume")
+                    b.HasOne("ResumeAPI.Models.Resume", null)
                         .WithMany("Projects")
-                        .HasForeignKey("ResumeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ResumeId");
+                });
 
-                    b.Navigation("Resume");
+            modelBuilder.Entity("ResumeAPI.Routes", b =>
+                {
+                    b.HasOne("ResumeAPI.Models.Api", null)
+                        .WithMany("Routes")
+                        .HasForeignKey("ApiRouteId");
+                });
+
+            modelBuilder.Entity("ResumeAPI.Models.Api", b =>
+                {
+                    b.Navigation("Routes");
                 });
 
             modelBuilder.Entity("ResumeAPI.Models.Resume", b =>
