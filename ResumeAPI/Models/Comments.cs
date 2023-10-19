@@ -19,12 +19,12 @@ namespace ResumeAPI.Models
         public string Massage { get; set; }
         public DateTime Created_at { get; set; }
 
-        // Foreign key for Resume
-        public Guid ResumeId { get; set; }
+        //// Foreign key for Resume
+        //public Guid ResumeId { get; set; }
 
-        // Navigation property
-        [ForeignKey("ResumeId")]
-        [JsonIgnore]
-        public virtual Resume Resume { get; set; }
+        //// Navigation property
+        //[ForeignKey("ResumeId")]
+        //[JsonIgnore]
+        //public virtual Resume Resume { get; set; }
     }
 }
