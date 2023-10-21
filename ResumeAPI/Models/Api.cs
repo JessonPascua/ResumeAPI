@@ -3,8 +3,7 @@
     public class Api
     {
         [Key]
-        public Guid Id { get; set; }
-        public string[] routes { get; set; }
-        public virtual List<Routes> Routes { get; set; }
+        public string Id { get; set; }
+        public List<RoutesList> RoutesList { get; set; }
     }
 }
