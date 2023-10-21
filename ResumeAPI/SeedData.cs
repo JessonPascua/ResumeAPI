@@ -366,8 +366,52 @@ namespace ResumeAPI
                         Email = "test@test.com",
                         Massage = "This is a comment.",
                     }
+                },
+            };
+
+            var apiRoutes = new Api
+            {
+                RoutesList = new List<RoutesList>
+                {
+                    new RoutesList
+                    {
+                        Description = "Route info",
+                        Url = "https://jesson-pascua-resume-api.vercel.app/api",
+                    },
+                    new RoutesList
+                    {
+                        Description = "Get all resume info",
+                        Url = "https://jesson-pascua-resume-api.vercel.app/api/resume",
+                    },
+                    new RoutesList
+                    {
+                        Description = "Get all certifications",
+                        Url = "https://jesson-pascua-resume-api.vercel.app/api/certifications",
+                    },
+                    new RoutesList
+                    {
+                        Description = "Get all projects",
+                        Url = "https://jesson-pascua-resume-api.vercel.app/api/projects",
+                    },
+                    new RoutesList
+                    {
+                        Description = "Get all contacts",
+                        Url = "https://jesson-pascua-resume-api.vercel.app/api/contacts",
+                    },
+                    new RoutesList
+                    {
+                        Description = "Get all comments",
+                        Url = "https://jesson-pascua-resume-api.vercel.app/api/comments",
+                    }
                 }
             };
+
+            //check if has data in dbContext.Api table.
+            if (!await dbContext.Api.AnyAsync())
+            {
+                dbContext.Api.Add(apiRoutes);
+                await dbContext.SaveChangesAsync();
+            }
 
             if (!await dbContext.Resume.AnyAsync(x => x.Name.ToLower() == myResume.Name.ToLower()))
             {
