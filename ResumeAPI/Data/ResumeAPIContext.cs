@@ -21,6 +21,19 @@ namespace ResumeAPI.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Api>()
+                        .Property(r => r.Id)
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+            //modelBuilder.Entity<Api>()
+            //           .HasMany(m => m.RoutesList)
+            //           .WithOne()
+            //           .HasForeignKey(r => r.Api)
+            //           .OnDelete(DeleteBehavior.Cascade);
+
+
+
             modelBuilder.Entity<Resume>()
                         .Property(r => r.Id)
                         .HasDefaultValueSql("gen_random_uuid()");
