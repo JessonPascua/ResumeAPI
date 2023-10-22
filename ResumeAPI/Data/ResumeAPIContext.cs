@@ -26,14 +26,6 @@ namespace ResumeAPI.Data
                         .Property(r => r.Id)
                         .HasDefaultValueSql("gen_random_uuid()");
 
-            //modelBuilder.Entity<Api>()
-            //           .HasMany(m => m.RoutesList)
-            //           .WithOne()
-            //           .HasForeignKey(r => r.Api)
-            //           .OnDelete(DeleteBehavior.Cascade);
-
-
-
             modelBuilder.Entity<Resume>()
                         .Property(r => r.Id)
                         .HasDefaultValueSql("gen_random_uuid()");
