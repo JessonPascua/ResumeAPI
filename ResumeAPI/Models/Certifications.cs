@@ -17,7 +17,6 @@
         [Column(TypeName = "VARCHAR(225)")]
         public string CredentialURL { get; set; }
 
-        [JsonIgnore]
         public DateTime? Created_at { get; set; }
 
         // Foreign key for Resume
