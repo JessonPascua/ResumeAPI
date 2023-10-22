@@ -17,14 +17,16 @@
         [Column(TypeName = "VARCHAR(225)")]
         public string CredentialURL { get; set; }
 
-        //public DateTime Created_at { get; set; }
+        [JsonIgnore]
+        public DateTime? Created_at { get; set; }
 
-        //// Foreign key for Resume
-        //public Guid ResumeId { get; set; }
+        // Foreign key for Resume
+        [JsonIgnore]
+        public Guid ResumeId { get; set; }
 
-        //// Navigation property
-        //[ForeignKey("ResumeId")]
-        //[JsonIgnore]
-        //public virtual Resume Resume { get; set; }
+        // Navigation property
+        [ForeignKey("ResumeId")]
+        [JsonIgnore]
+        public virtual Resume Resume { get; set; }
     }
 }
