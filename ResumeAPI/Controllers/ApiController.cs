@@ -14,16 +14,16 @@ namespace ResumeAPI.Controllers
             _context = context;
         }
 
-        //[HttpGet]
-        //public async Task<ActionResult<IEnumerable<Api>>> GetAllRoutes()
-        //{
-        //    if (_context.Api == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    var routes = await _context.Api.Include(x => x.Routes).ToListAsync();
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Api>>> GetAllRoutes()
+        {
+            if (_context.Api == null)
+            {
+                return NotFound();
+            }
+            var routes = await _context.Api.Include(x => x.RoutesList).ToListAsync();
 
-        //    return Ok(routes);
-        //}
+            return Ok(routes);
+        }
     }
 }
