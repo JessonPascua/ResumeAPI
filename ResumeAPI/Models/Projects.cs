@@ -25,6 +25,7 @@ namespace ResumeAPI.Models
         public DateTime? Created_at { get; set; }
 
         // Foreign key for Resume
+        [JsonIgnore]
         public Guid ResumeId { get; set; }
 
         // Navigation property
