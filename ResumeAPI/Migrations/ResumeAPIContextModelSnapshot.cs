@@ -41,6 +41,9 @@ namespace ResumeAPI.Migrations
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
 
+                    b.Property<DateTime?>("Created_at")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("CredentialURL")
                         .IsRequired()
                         .HasColumnType("VARCHAR(225)");
@@ -56,7 +59,7 @@ namespace ResumeAPI.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR(525)");
 
-                    b.Property<Guid?>("ResumeId")
+                    b.Property<Guid>("ResumeId")
                         .HasColumnType("uuid");
 
                     b.HasKey("CertificationId");
@@ -73,7 +76,7 @@ namespace ResumeAPI.Migrations
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
 
-                    b.Property<DateTime>("Created_at")
+                    b.Property<DateTime?>("Created_at")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
@@ -90,7 +93,7 @@ namespace ResumeAPI.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR(50)");
 
-                    b.Property<Guid?>("ResumeId")
+                    b.Property<Guid>("ResumeId")
                         .HasColumnType("uuid");
 
                     b.HasKey("CommentId");
@@ -107,7 +110,7 @@ namespace ResumeAPI.Migrations
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
 
-                    b.Property<DateTime>("Created_at")
+                    b.Property<DateTime?>("Created_at")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
@@ -124,7 +127,7 @@ namespace ResumeAPI.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("VARCHAR(50)");
 
-                    b.Property<Guid?>("ResumeId")
+                    b.Property<Guid>("ResumeId")
                         .HasColumnType("uuid");
 
                     b.HasKey("ContactId");
@@ -141,7 +144,7 @@ namespace ResumeAPI.Migrations
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
 
-                    b.Property<DateTime>("Created_at")
+                    b.Property<DateTime?>("Created_at")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
@@ -154,7 +157,7 @@ namespace ResumeAPI.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("ResumeId")
+                    b.Property<Guid>("ResumeId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("School")
@@ -179,7 +182,7 @@ namespace ResumeAPI.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR(100)");
 
-                    b.Property<DateTime>("Created_at")
+                    b.Property<DateTime?>("Created_at")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
@@ -191,7 +194,7 @@ namespace ResumeAPI.Migrations
                     b.Property<string[]>("Responsibilities")
                         .HasColumnType("TEXT[]");
 
-                    b.Property<Guid?>("ResumeId")
+                    b.Property<Guid>("ResumeId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Title")
@@ -212,7 +215,7 @@ namespace ResumeAPI.Migrations
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
 
-                    b.Property<DateTime>("Created_at")
+                    b.Property<DateTime?>("Created_at")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
@@ -230,7 +233,7 @@ namespace ResumeAPI.Migrations
                     b.Property<string>("Repo")
                         .HasColumnType("VARCHAR(100)");
 
-                    b.Property<Guid?>("ResumeId")
+                    b.Property<Guid>("ResumeId")
                         .HasColumnType("uuid");
 
                     b.Property<string[]>("Stacks")
@@ -290,44 +293,68 @@ namespace ResumeAPI.Migrations
 
             modelBuilder.Entity("ResumeAPI.Models.Certifications", b =>
                 {
-                    b.HasOne("ResumeAPI.Models.Resume", null)
+                    b.HasOne("ResumeAPI.Models.Resume", "Resume")
                         .WithMany("Certifications")
-                        .HasForeignKey("ResumeId");
+                        .HasForeignKey("ResumeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Resume");
                 });
 
             modelBuilder.Entity("ResumeAPI.Models.Comments", b =>
                 {
-                    b.HasOne("ResumeAPI.Models.Resume", null)
+                    b.HasOne("ResumeAPI.Models.Resume", "Resume")
                         .WithMany("Comments")
-                        .HasForeignKey("ResumeId");
+                        .HasForeignKey("ResumeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Resume");
                 });
 
             modelBuilder.Entity("ResumeAPI.Models.Contacts", b =>
                 {
-                    b.HasOne("ResumeAPI.Models.Resume", null)
+                    b.HasOne("ResumeAPI.Models.Resume", "Resume")
                         .WithMany("Contacts")
-                        .HasForeignKey("ResumeId");
+                        .HasForeignKey("ResumeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Resume");
                 });
 
             modelBuilder.Entity("ResumeAPI.Models.Educations", b =>
                 {
-                    b.HasOne("ResumeAPI.Models.Resume", null)
+                    b.HasOne("ResumeAPI.Models.Resume", "Resume")
                         .WithMany("Educations")
-                        .HasForeignKey("ResumeId");
+                        .HasForeignKey("ResumeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Resume");
                 });
 
             modelBuilder.Entity("ResumeAPI.Models.Experiences", b =>
                 {
-                    b.HasOne("ResumeAPI.Models.Resume", null)
+                    b.HasOne("ResumeAPI.Models.Resume", "Resume")
                         .WithMany("Experiences")
-                        .HasForeignKey("ResumeId");
+                        .HasForeignKey("ResumeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Resume");
                 });
 
             modelBuilder.Entity("ResumeAPI.Models.Projects", b =>
                 {
-                    b.HasOne("ResumeAPI.Models.Resume", null)
+                    b.HasOne("ResumeAPI.Models.Resume", "Resume")
                         .WithMany("Projects")
-                        .HasForeignKey("ResumeId");
+                        .HasForeignKey("ResumeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Resume");
                 });
 
             modelBuilder.Entity("ResumeAPI.RoutesList", b =>
