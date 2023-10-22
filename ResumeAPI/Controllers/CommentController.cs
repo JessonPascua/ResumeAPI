@@ -24,18 +24,21 @@
             return Ok(commentList);
         }
 
-        //[HttpPost]
-        //[Route("PostComments")]
-        //public async Task<ActionResult<Resume>> PostComment([Bind("name")] Comments comment)
-        //{
-        //    if (_context.Comments == null)
-        //    {
-        //        return Problem("Entity set 'ResumeAPIContext.Comments'  is null.");
-        //    }
-        //    _context.Comments.Add(comment);
-        //    await _context.SaveChangesAsync();
+        [HttpPost]
+        [Route("PostComments")]
+        public async Task<ActionResult<Resume>> PostComment([Bind("Name, Email, Message")] Comments comment)
+        {
+            var defaultResume = await _context.Resume.FirstOrDefaultAsync();
+            if (defaultResume == null)
+            {
+                return BadRequest("No default Resume found.");
+            }
 
-        //    return CreatedAtAction("GetComments", new { id = comment.CommentId }, comment);
-        //}
+            comment.ResumeId = defaultResume.Id;
+            _context.Comments.Add(comment);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("Comments", new { id = comment.CommentId }, comment);
+        }
     }
 }
